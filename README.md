@@ -27,13 +27,15 @@ A small learning project: I trained a simple neural network on MNIST in PyTorch 
 | 0.25 | 0.1 % |
 | 0.30 | 0.0 % |
 
+Results vary slightly between runs, because the network starts from a random initialisation and the training data are shuffled. The table above is from my first run. The notebook shows a second run: 92.2 % clean accuracy, then 72.9 % (ε = 0.05), 33.6 % (0.10), 8.6 % (0.15), 1.2 % (0.20), 0.1 % (0.25) and 0.0 % (0.30). A fixed random seed would make runs repeatable; I plan to add one.
+
 Examples at ε = 0.2 (true label → prediction after the attack): 7 → 3, 2 → 5, 1 → 2, 0 → 5, 4 → 7. The digits are still easy for a human to read. The plots are in the notebook.
 
 ## What I learned and the limits
 
 - A model with 92 % clean accuracy loses most of its accuracy at ε = 0.1 and almost all of it at ε = 0.2.
 - On MNIST's black background, the perturbation is visible as grey noise at the larger ε values, so it is not "invisible" at these strengths.
-- Limits: a small fully connected model (not a CNN), one dataset, one attack (FGSM), one training run, and no defense yet.
+- Limits: a small fully connected model (not a CNN), one dataset, one attack (FGSM), two training runs without a fixed seed, and no defense yet.
 - Next steps I want to try: a CNN, adversarial training as a defense, and checking how *confident* the model is on adversarial inputs, which relates to the confidence-gated automation in my MSc thesis.
 
 ## References
@@ -43,4 +45,4 @@ Examples at ε = 0.2 (true label → prediction after the attack): 7 → 3, 2 �
 
 ## How to run
 
-Open `fgsm-mnist-pytorch.ipynb` in Google Colab and choose **Runtime → Run all**.
+Open `fgsm_mnist_pytorch.ipynb` in Google Colab and choose **Runtime → Run all**.
